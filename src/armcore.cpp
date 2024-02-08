@@ -973,26 +973,26 @@ namespace ocx { namespace arm {
     void core::helper_tlb_cluster_flush(void* opaque) {
         core* cpu = (core*)opaque;
         shared_ptr<void> arg(nullptr);
-        cpu->m_env.broadcast_syscall(TLB_FLUSH, move(arg), true);
+        cpu->m_env.broadcast_syscall(TLB_FLUSH, std::move(arg), true);
     }
 
     void core::helper_tlb_cluster_flush_page(void* opaque, u64 addr) {
         core* cpu = (core*)opaque;
         shared_ptr<void> arg(new u64(addr));
-        cpu->m_env.broadcast_syscall(TLB_FLUSH_PAGE, move(arg), true);
+        cpu->m_env.broadcast_syscall(TLB_FLUSH_PAGE, std::move(arg), true);
     }
 
     void core::helper_tlb_cluster_flush_mmuidx(void* opaque, uint16_t idxmap) {
         core* cpu = (core*)opaque;
         shared_ptr<void> arg(new uint16_t(idxmap));
-        cpu->m_env.broadcast_syscall(TLB_FLUSH_MMUIDX, move(arg), true);
+        cpu->m_env.broadcast_syscall(TLB_FLUSH_MMUIDX, std::move(arg), true);
     }
 
     void core::helper_tlb_cluster_flush_page_mmuidx(void* opaque, u64 addr,
                                                     uint16_t idxmap) {
         core* cpu = (core*)opaque;
         shared_ptr<void> arg(new flush_page_mmuidx_args { addr, idxmap });
-        cpu->m_env.broadcast_syscall(TLB_FLUSH_PAGE_MMUIDX, move(arg), true);
+        cpu->m_env.broadcast_syscall(TLB_FLUSH_PAGE_MMUIDX, std::move(arg), true);
     }
 
     void core::helper_breakpoint(void* opaque, u64 addr) {
@@ -1025,6 +1025,9 @@ namespace ocx { namespace arm {
     void core::helper_hint(void* opaque, uc_hint_t hint) {
         core* cpu = (core*)opaque;
         env &e = cpu->m_env;
+
+        [[maybe_unused]]
+        uint64_t pc = cpu->get_program_counter();
 
         switch (hint) {
         case UC_HINT_YIELD:
