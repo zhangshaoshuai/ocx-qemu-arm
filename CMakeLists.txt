@@ -40,7 +40,9 @@ message(STATUS "Using UNICORN debug: " ${UNICORN_DEBUG})
 set(CAPSTONE_ARCHITECTURE_DEFAULT OFF CACHE BOOL "disable capstone defaults" FORCE)
 set(CAPSTONE_ARM64_SUPPORT ON CACHE BOOL "enable capstone ARM64 support" FORCE)
 set(CAPSTONE_ARM_SUPPORT ON CACHE BOOL "enable capstone ARM support" FORCE)
+set(CAPSTONE_RISCV_SUPPORT ON CACHE BOOL "enable capstone RISCV support" FORCE)
 set(CAPSTONE_BUILD_TESTS OFF CACHE BOOL "disable capstone tests" FORCE)
+
 add_subdirectory(${CAPSTONE_HOME} capstone EXCLUDE_FROM_ALL)
 set_property(TARGET capstone-static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
