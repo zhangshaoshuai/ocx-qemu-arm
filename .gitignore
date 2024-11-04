@@ -4,6 +4,7 @@
 /setup.sh
 /.vs
 /.ccls-cache
+/.cache
 
 /BUILD
 /build
