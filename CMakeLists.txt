@@ -46,7 +46,7 @@ set(CAPSTONE_BUILD_STATIC ON CACHE BOOL "Build static library" FORCE)
 set(CAPSTONE_BUILD_SHARED ON CACHE BOOL "Build shard library" FORCE)
 
 add_subdirectory(${CAPSTONE_HOME} capstone EXCLUDE_FROM_ALL)
-set_property(TARGET capstone-static PROPERTY POSITION_INDEPENDENT_CODE ON)
+#set_property(TARGET capstone-static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 set(OCX_BUILD_TESTS OFF CACHE BOOL "disable ocx tests" FORCE)
 
